@@ -1,6 +1,6 @@
-//import Vue from 'vue';
+import Vue from 'vue';
 
-window.Vue = require('vue');
+window.Vue = Vue;
 window._ = require('lodash');
 window.$ = window.jQuery = require('jquery');
 window.VueApexCharts = require('vue-apexcharts');
@@ -12,6 +12,8 @@ window.VueApexCharts = require('vue-apexcharts');
  */
 
 window.axios = require('axios');
+
+window.baseUrl = 'http://localhost/sunny-camping';
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

@@ -3,32 +3,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\ClientRepositoryInterface;
-use Illuminate\Http\Request;
-
 class AdminController extends Controller
 {
-    /**
-     * @var ClientRepositoryInterface
-     */
-    private $clientRepository;
-
-    public function __construct(ClientRepositoryInterface $clientsRepository)
-    {
-        $this->clientRepository = $clientsRepository;
-    }
-
     public function dashboard()
     {
         return view('admin.dashboard', ['page' => 'dashboard', 'nav_items' =>
             config('constants.admin_nav_items')]);
     }
 
-    public function clients(Request $request)
+    public function clients()
     {
-        $clients = $this->clientRepository->all();
         return view('admin.clients', ['page' => 'clients', 'nav_items' =>
-            config('constants.admin_nav_items'), 'clients' => $clients]);
+            config('constants.admin_nav_items')]);
     }
 
     public function bills()
