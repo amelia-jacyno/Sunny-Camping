@@ -18,6 +18,7 @@ class CreateReservationsTable extends Migration
             $table->integer('client_id');
             $table->integer('room_id');
             $table->integer('status_id');
+            $table->integer('service_id');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->integer('prepayment')->default(0);
