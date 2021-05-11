@@ -19,7 +19,13 @@ namespace App\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|Room whereServiceId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Room whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Reservation[] $reservations
+ * @property-read int|null $reservations_count
  */
 class Room extends BaseModel
 {
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }
