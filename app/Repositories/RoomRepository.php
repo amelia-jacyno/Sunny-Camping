@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Models\Room;
 use Illuminate\Support\Facades\DB;
 
 class RoomRepository extends BaseRepository
