@@ -37,11 +37,29 @@ namespace App\Models;
  * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ReservationItem[] $reservationItems
  * @property-read int|null $reservation_items_count
+ * @property-read \App\Models\Client $client
+ * @property-read \App\Models\Room $room
+ * @property-read \App\Models\Status|null $status
  */
 class Reservation extends BaseModel
 {
     public function reservationItems()
     {
         return $this->hasMany(ReservationItem::class);
+    }
+
+    public function status()
+    {
+        return $this->hasOne(Status::class);
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
     }
 }
