@@ -1,11 +1,9 @@
 <?php
 
-
 namespace App\Models;
 
-
 /**
- * App\Models\Reservation
+ * App\Models\Reservation.
  *
  * @property int $id
  * @property int $client_id
@@ -40,5 +38,4 @@ namespace App\Models;
  */
 class Reservation extends BaseModel
 {
-
 }

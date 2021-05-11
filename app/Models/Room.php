@@ -1,11 +1,9 @@
 <?php
 
-
 namespace App\Models;
 
-
 /**
- * App\Models\Room
+ * App\Models\Room.
  *
  * @property int $id
  * @property int $service_id
@@ -24,5 +22,4 @@ namespace App\Models;
  */
 class Room extends BaseModel
 {
-
 }
