@@ -21,11 +21,18 @@ namespace App\Models;
  * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Reservation[] $reservations
  * @property-read int|null $reservations_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\RoomPrice[] $roomPrices
+ * @property-read int|null $room_prices_count
  */
 class Room extends BaseModel
 {
     public function reservations()
     {
         return $this->hasMany(Reservation::class);
+    }
+
+    public function roomPrices()
+    {
+        return $this->hasMany(RoomPrice::class);
     }
 }
