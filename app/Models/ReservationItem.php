@@ -1,11 +1,9 @@
 <?php
 
-
 namespace App\Models;
 
-
 /**
- * App\Models\ReservationItem
+ * App\Models\ReservationItem.
  *
  * @property int $id
  * @property int $reservation_id
@@ -29,6 +27,7 @@ namespace App\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|ReservationItem whereStartDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ReservationItem whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Reservation $reservation
  */
 class ReservationItem extends BaseModel
 {

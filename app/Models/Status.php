@@ -1,11 +1,9 @@
 <?php
 
-
 namespace App\Models;
 
-
 /**
- * App\Models\Status
+ * App\Models\Status.
  *
  * @property int $id
  * @property string $name
@@ -22,5 +20,4 @@ namespace App\Models;
  */
 class Status extends BaseModel
 {
-
 }
