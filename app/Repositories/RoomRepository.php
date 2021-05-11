@@ -10,6 +10,7 @@ class RoomRepository extends BaseRepository
     {
         return DB::table('rooms')
             ->leftJoin('reservations', 'rooms.id', '=', 'reservations.room_id')
+            ->select('rooms.*', 'reservations.start_date', 'reservations.end_date')
             ->get();
     }
 }
