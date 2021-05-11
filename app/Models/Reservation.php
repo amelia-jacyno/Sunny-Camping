@@ -35,7 +35,13 @@ namespace App\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|Reservation whereStatusId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Reservation whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ReservationItem[] $reservationItems
+ * @property-read int|null $reservation_items_count
  */
 class Reservation extends BaseModel
 {
+    public function reservationItems()
+    {
+        return $this->hasMany(ReservationItem::class);
+    }
 }
