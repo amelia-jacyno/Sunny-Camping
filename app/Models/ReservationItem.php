@@ -32,5 +32,8 @@ namespace App\Models;
  */
 class ReservationItem extends BaseModel
 {
-
+    public function reservation()
+    {
+        return $this->belongsTo(Reservation::class);
+    }
 }
