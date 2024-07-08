@@ -45,10 +45,28 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Client whereUpdatedAt($value)
  * @mixin Eloquent
  *
- * @property float $climate_paid
- * @property float $climate_price
+ * @property float    $climate_paid
+ * @property float    $climate_price
+ * @property int|null $token_number
  *
  * @method static Builder|Client whereClimatePaid($value)
+ *
+ * @property int         $unregistered
+ * @property int         $cash_register
+ * @property int         $terminal
+ * @property int         $voucher
+ * @property int         $invoice
+ * @property string|null $sector
+ * @property string|null $car_registration
+ *
+ * @method static Builder|Client whereCarRegistration($value)
+ * @method static Builder|Client whereCashRegister($value)
+ * @method static Builder|Client whereInvoice($value)
+ * @method static Builder|Client whereSector($value)
+ * @method static Builder|Client whereTerminal($value)
+ * @method static Builder|Client whereTokenNumber($value)
+ * @method static Builder|Client whereUnregistered($value)
+ * @method static Builder|Client whereVoucher($value)
  */
 class Client extends BaseModel
 {
@@ -92,7 +110,7 @@ class Client extends BaseModel
             $price += $itemPrice;
         }
 
-        return floor($price);
+        return round($price, 2);
     }
 
     public function getPricePerDayAttribute(): float
@@ -110,11 +128,13 @@ class Client extends BaseModel
         $price = 0;
         foreach ($clientItems as $clientItem) {
             if ($clientItem->serviceCategory && 'Klimatyczne' == $clientItem->serviceCategory->name) {
-                $price += $clientItem->price * $clientItem->count;
+                $itemPrice = $clientItem->price * $clientItem->count;
+                $itemPrice *= $clientItem->days ?? $this->days;
+                $price += $itemPrice;
             }
         }
 
-        return $price * $this->days;
+        return round($price, 2);
     }
 
     public function getDaysAttribute(): int

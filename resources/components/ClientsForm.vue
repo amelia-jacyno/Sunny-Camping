@@ -21,8 +21,8 @@
                    class="form-control form-control-sm">
         </div>
         <div class="col-6 col-sm-4 col-md-3 form-group">
-            <label for="comment">Komentarz</label>
-            <input id="comment" v-model="client.comment" name="comment" type="text" placeholder="Komentarz"
+            <label for="car_registration">Rejestracja</label>
+            <input id="car_registration" v-model="client.car_registration" name="car_registration" type="text" placeholder="Rejestracja"
                    class="form-control form-control-sm">
         </div>
         <div class="col-6 col-sm-4 col-md-3 form-group">
@@ -44,12 +44,27 @@
                    class="form-control form-control-sm">
         </div>
         <div class="col-6 col-sm-4 col-md-3 form-group">
+            <label for="token_number">Token</label>
+            <input id="token_number" v-model="client.token_number" name="token_number" type="number"
+                   class="form-control form-control-sm">
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 form-group">
             <label for="status">Status</label>
             <select id="status" v-model="client.status" type="select"
                  class="form-control form-control-sm">
               <option value="unsettled">Nierozliczono</option>
                 <option value="settled">Rozliczono</option>
             </select>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 form-group">
+            <label for="sector">Sektor</label>
+            <input id="sector" v-model="client.sector" name="sector" type="text" placeholder="Sektor"
+                   class="form-control form-control-sm">
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 form-group">
+            <label for="comment">Komentarz</label>
+            <input id="comment" v-model="client.comment" name="comment" type="text" placeholder="Komentarz"
+                   class="form-control form-control-sm">
         </div>
         <div class="col-12">
             <div class="form-check-inline">
@@ -154,7 +169,8 @@ export default {
             items: [],
             isNameInvalid: false,
             price: 0,
-            climate_price: 0
+            climate_price: 0,
+            submitting: false
         }
     },
     mounted() {
@@ -228,6 +244,10 @@ export default {
             this.categories[categoryId].addedItems.splice(itemId, 1);
         },
         submitClientForm() {
+            if (this.submitting) {
+                return false;
+            }
+
             if (!this.client.name) {
                 this.isNameInvalid = true;
                 window.scrollTo(0, 0);
@@ -246,6 +266,7 @@ export default {
                 this.client.client_items = this.client.client_items.concat(category.addedItems);
             }, this);
 
+            this.submitting = true;
             if (this.mode === 'POST') {
                 request = axios.post(baseUrl + '/api/clients', this.client);
             } else {
@@ -255,6 +276,7 @@ export default {
                 window.location.href = baseUrl + '/admin/clients';
             }, () => {
                 alert("Coś poszło nie tak! Upewnij się że wpisane dane są poprawne!");
+                this.submitting = false;
             });
         },
         getDays() {
